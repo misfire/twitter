@@ -8,7 +8,7 @@ require 'tmhOAuth.php';
 $connection = new tmhOAuth(array('consumer_key'=> $consumer_key, 'consumer_secret' => $consumer_secret,
  'user_token' => $user_token, 'user_secret' => $user_secret));
 
-//Get @justinbieber's account info
+//Get my timeline info!!!
 
 $connection->request('GET',$connection->url('1.1/statuses/user_timeline'),
   array('screen_name'=>'dannychenmusic'));
@@ -27,7 +27,7 @@ if($response_code<>200){
 
 }
 
-// Display the response array
+// Display the response array FOR DEBUGS
 
 //print_r($response_data);
 
