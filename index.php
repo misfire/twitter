@@ -3,8 +3,6 @@
 require 'app_tokens.php';
 require 'tmhOAuth.php';
 
-
-
 $connection = new tmhOAuth(array('consumer_key'=> $consumer_key, 'consumer_secret' => $consumer_secret,
  'user_token' => $user_token, 'user_secret' => $user_secret));
 
@@ -31,7 +29,6 @@ if($response_code<>200){
 
 //print_r($response_data);
 
-
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +39,6 @@ if($response_code<>200){
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
  
-
   </head>
   <body>
     <!-- Part 1: Wrap all page content here -->
@@ -72,7 +68,7 @@ if($response_code<>200){
     <?php echo $response_data[0]['text'] ?>
 
 
-       <p> <?php echo date("l M j \- g:ia",strtotime($response_data['created_at'])); ?> </p>
+       <p> <?php echo date("l M j \- g:ia",strtotime($response_data[0]['created_at'])); ?> </p>
   </div>
 </div>
 
@@ -86,7 +82,7 @@ if($response_code<>200){
     <?php echo $response_data[1]['text'] ?>
 
 
-       <p> <?php echo date("l M j \- g:ia",strtotime($response_data['created_at'])); ?> </p>
+       <p> <?php echo date("l M j \- g:ia",strtotime($response_data[1]['created_at'])); ?> </p>
   </div>
 </div>
 
@@ -100,7 +96,7 @@ if($response_code<>200){
     <?php echo $response_data[2]['text'] ?>
 
 
-       <p> <?php echo date("l M j \- g:ia",strtotime($response_data['created_at'])); ?> </p>
+       <p> <?php echo date("l M j \- g:ia",strtotime($response_data[2]['created_at'])); ?> </p>
   </div>
 </div>
 
@@ -114,7 +110,7 @@ if($response_code<>200){
     <?php echo $response_data[3]['text'] ?>
 
 
-       <p> <?php echo date("l M j \- g:ia",strtotime($response_data['created_at'])); ?> </p>
+       <p> <?php echo date("l M j \- g:ia",strtotime($response_data[3]['created_at'])); ?> </p>
   </div>
 </div>
 
@@ -128,7 +124,7 @@ if($response_code<>200){
     <?php echo $response_data[4]['text'] ?>
 
 
-       <p> <?php echo date("l M j \- g:ia",strtotime($response_data['created_at'])); ?> </p>
+       <p> <?php echo date("l M j \- g:ia",strtotime($response_data[4]['created_at'])); ?> </p>
   </div>
 </div>
 
