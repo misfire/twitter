@@ -3,6 +3,8 @@
 require 'app_tokens.php';
 require 'tmhOAuth.php';
 
+
+
 $connection = new tmhOAuth(array('consumer_key'=> $consumer_key, 'consumer_secret' => $consumer_secret,
  'user_token' => $user_token, 'user_secret' => $user_secret));
 
@@ -29,7 +31,34 @@ if($response_code<>200){
 
 //print_r($response_data);
 
+
 ?>
+
+<?php
+/**
+ * convert @user_mentions into links!!
+ * 
+ */
+function linkEnts($response) {
+
+    // Convert tweet text to array of one-character strings
+    $tweetstring = str_split($response['text']);
+
+    // Insert starting and closing link tags at indices...
+
+    // @user_mentions :D
+    foreach ($response['entities']['user_mentions'] as $ent) {
+        $userlink = "https://twitter.com/" . $ent['screen_name'];       
+        $tweetstring[$ent['indices'][0]] = "<a href=\"$userlink\">" . $tweetstring[$ent['indices'][0]];
+        $tweetstring[$ent['indices'][1] - 1] .= "</a>";         
+    }               
+
+    // Convert array back to string
+    $result = implode('', $tweetstring);
+    return $result;
+
+}
+?>  
 
 <!DOCTYPE html>
 <html>
@@ -39,6 +68,7 @@ if($response_code<>200){
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
  
+
   </head>
   <body>
     <!-- Part 1: Wrap all page content here -->
@@ -65,7 +95,7 @@ if($response_code<>200){
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[0]['user']['screen_name'] . ">" . $response_data[0]['user']['name'] . "</a>" ?></h4>
     
-    <?php echo $response_data[0]['text'] ?>
+    <?php echo linkEnts($response_data[0]) ?>
 
 
        <p> <?php echo date("l M j \- g:ia",strtotime($response_data[0]['created_at'])); ?> </p>
@@ -79,7 +109,7 @@ if($response_code<>200){
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[1]['user']['screen_name'] . ">" . $response_data[1]['user']['name'] . "</a>" ?></h4>
     
-    <?php echo $response_data[1]['text'] ?>
+    <?php echo linkEnts($response_data[1]) ?>
 
 
        <p> <?php echo date("l M j \- g:ia",strtotime($response_data[1]['created_at'])); ?> </p>
@@ -93,7 +123,7 @@ if($response_code<>200){
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[2]['user']['screen_name'] . ">" . $response_data[2]['user']['name'] . "</a>" ?></h4>
     
-    <?php echo $response_data[2]['text'] ?>
+    <?php echo linkEnts($response_data[2]) ?>
 
 
        <p> <?php echo date("l M j \- g:ia",strtotime($response_data[2]['created_at'])); ?> </p>
@@ -107,7 +137,7 @@ if($response_code<>200){
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[3]['user']['screen_name'] . ">" . $response_data[3]['user']['name'] . "</a>" ?></h4>
     
-    <?php echo $response_data[3]['text'] ?>
+    <?php echo linkEnts($response_data[3]) ?>
 
 
        <p> <?php echo date("l M j \- g:ia",strtotime($response_data[3]['created_at'])); ?> </p>
@@ -121,7 +151,7 @@ if($response_code<>200){
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[4]['user']['screen_name'] . ">" . $response_data[4]['user']['name'] . "</a>" ?></h4>
     
-    <?php echo $response_data[4]['text'] ?>
+    <?php echo linkEnts($response_data[4]) ?>
 
 
        <p> <?php echo date("l M j \- g:ia",strtotime($response_data[4]['created_at'])); ?> </p>
