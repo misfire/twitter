@@ -63,7 +63,7 @@ function linkEnts($response) {
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap 101 Template</title>
+    <title>Danny's Code Samples</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -78,7 +78,7 @@ function linkEnts($response) {
       <div class="container">
         <div class="page-header">
 
-          <h1>Danny's Twitter Page</h1>
+          <h1>Danny's Code Samples</h1>
              <ul class="nav nav-tabs">
       <li class="active">
         <a href="#">Twitter</a>
