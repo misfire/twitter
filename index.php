@@ -48,10 +48,27 @@ function linkEnts($response) {
 
     // @user_mentions :D
     foreach ($response['entities']['user_mentions'] as $ent) {
-        $userlink = "https://twitter.com/" . $ent['screen_name'];       
-        $tweetstring[$ent['indices'][0]] = "<a href=\"$userlink\">" . $tweetstring[$ent['indices'][0]];
+        $link = "https://twitter.com/" . $ent['screen_name'];       
+        $tweetstring[$ent['indices'][0]] = "<a href=\"$link\">" . $tweetstring[$ent['indices'][0]];
         $tweetstring[$ent['indices'][1] - 1] .= "</a>";         
-    }               
+    }
+
+    // for #hashtags
+    foreach ($response['entities']['hashtags'] as $ent) {
+      $link = "https://www.twitter.com/search?q=%23" . $ent['text'];
+      $tweetstring[$ent['indices'][0]] = "<a href=\"$link\">" . $tweetstring[$ent['indices'][0]];
+      $tweetstring[$ent['indices'][1] - 1] .= "</a>";
+
+    }
+
+    // for hyperlinks
+
+    foreach ($response['entities']['urls'] as $ent) {
+      $link = $ent['expanded_url'];
+      $tweetstring[$ent['indices'][0]] = "<a href=\"$link\">" . $tweetstring[$ent['indices'][0]];
+      $tweetstring[$ent['indices'][1] - 1] .= "</a>";
+
+    }
 
     // Convert array back to string
     $result = implode('', $tweetstring);
