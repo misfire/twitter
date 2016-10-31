@@ -11,6 +11,9 @@ $settings = array(
     'consumer_secret' => "NEhmjZNofrT6MmAneIFs5F8m8987hZt1fpQa1f5KBpE"
 );
 
+$url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
+$requestMethod = "GET";
+$getfield = '?screen_name=dannychenmusic&count=20';
 
 //$connection = new tmhOAuth(array('consumer_key'=> $consumer_key, 'consumer_secret' => $consumer_secret,
 // 'user_token' => $user_token, 'user_secret' => $user_secret));
@@ -19,8 +22,11 @@ $connection = new TwitterAPIExchange($settings);
 
 //Get my timeline info!!!
 
-$connection->request('GET',$connection->url('1.1/statuses/user_timeline'),
-  array('screen_name'=>'dannychenmusic'));
+
+$connection->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
+
+//$connection->request('GET',$connection->url('1.1/statuses/user_timeline'),
+ // array('screen_name'=>'dannychenmusic'));
 
 //get HTTP response code for api request
 
