@@ -1,12 +1,21 @@
 <?php
 
-require 'app_tokens.php';
-require 'tmhOAuth.php';
+//require 'app_tokens.php';
+//require 'tmhOAuth.php';
+require_once('TwitterAPIExchange.php');
+
+$settings = array(
+    'oauth_access_token' => "zZfosXqiJtfg4mSCraog",
+    'oauth_access_token_secret' => "fOovLCOqh1eGW0S5loLrXIwpuJnipPJbGd8cVY0tc",
+    'consumer_key' => "14993946-w3QgA5cpYi3va2XWI6QunJ3giVld9oXNneOlxseDf",
+    'consumer_secret' => "NEhmjZNofrT6MmAneIFs5F8m8987hZt1fpQa1f5KBpE"
+);
 
 
+//$connection = new tmhOAuth(array('consumer_key'=> $consumer_key, 'consumer_secret' => $consumer_secret,
+// 'user_token' => $user_token, 'user_secret' => $user_secret));
 
-$connection = new tmhOAuth(array('consumer_key'=> $consumer_key, 'consumer_secret' => $consumer_secret,
- 'user_token' => $user_token, 'user_secret' => $user_secret));
+$connection = new TwitterAPIExchange($settings);
 
 //Get my timeline info!!!
 
