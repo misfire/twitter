@@ -1,34 +1,24 @@
 <?php
 
-//require 'app_tokens.php';
-//require 'tmhOAuth.php';
-require_once('TwitterAPIExchange.php');
+require 'app_tokens.php';
+require 'tmhOAuth.php';
 
-$settings = array(
-    'oauth_access_token' => "zZfosXqiJtfg4mSCraog",
-    'oauth_access_token_secret' => "fOovLCOqh1eGW0S5loLrXIwpuJnipPJbGd8cVY0tc",
-    'consumer_key' => "14993946-w3QgA5cpYi3va2XWI6QunJ3giVld9oXNneOlxseDf",
-    'consumer_secret' => "NEhmjZNofrT6MmAneIFs5F8m8987hZt1fpQa1f5KBpE"
-);
+$connection = new tmhOAuth(array('consumer_key'=> $consumer_key, 'consumer_secret' => $consumer_secret,
+ 'user_token' => $user_token, 'user_secret' => $user_secret));
 
-$url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
-$requestMethod = "GET";
-$getfield = '?screen_name=dannychenmusic&count=20';
-
-//$connection = new tmhOAuth(array('consumer_key'=> $consumer_key, 'consumer_secret' => $consumer_secret,
-// 'user_token' => $user_token, 'user_secret' => $user_secret));
-
-$connection = new TwitterAPIExchange($settings);
+//$connection = new TwitterAPIExchange($settings);
 
 //Get my timeline info!!!
 
 
-$connection->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
+//$connection->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
 
-//$connection->request('GET',$connection->url('1.1/statuses/user_timeline'),
- // array('screen_name'=>'dannychenmusic'));
+$connection->request('GET',$connection->url('1.1/statuses/user_timeline'),
+  array('screen_name'=>'dannychenmusic'));
 
 //get HTTP response code for api request
+
+//print_r($connection);
 
 $response_code = $connection->response['code'];
 
@@ -115,14 +105,14 @@ function linkEnts($response) {
       <li class="active">
         <a href="#">Twitter</a>
         </li>
-        <li><a href="#">Google Maps</a></li>
-        <li><a href="#">Instagram</a></li>
+    <!--    <li><a href="#">Google Maps</a></li>
+        <li><a href="#">Instagram</a></li> -->
         </div>
         <p class="lead">This shows the latest five tweets from my twitter.</p>
          
 <div class="media">
   <a class="pull-left" href="#">
-    <img class="media-object" data-src="holder.js/64x64" src="http://a0.twimg.com/profile_images/3304148517/ca5b7a3855c7293f78bd755373656146_normal.jpeg">
+    <img class="media-object" data-src="holder.js/64x64" src="https://pbs.twimg.com/profile_images/760268372135129088/gMumPP77_bigger.jpg">
   </a>
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[0]['user']['screen_name'] . ">" . $response_data[0]['user']['name'] . "</a>" ?></h4>
@@ -136,7 +126,7 @@ function linkEnts($response) {
 
 <div class="media">
   <a class="pull-left" href="#">
-    <img class="media-object" data-src="holder.js/64x64" src="http://a0.twimg.com/profile_images/3304148517/ca5b7a3855c7293f78bd755373656146_normal.jpeg">
+    <img class="media-object" data-src="holder.js/64x64" src="https://pbs.twimg.com/profile_images/760268372135129088/gMumPP77_bigger.jpg">
   </a>
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[1]['user']['screen_name'] . ">" . $response_data[1]['user']['name'] . "</a>" ?></h4>
@@ -150,7 +140,7 @@ function linkEnts($response) {
 
 <div class="media">
   <a class="pull-left" href="#">
-    <img class="media-object" data-src="holder.js/64x64" src="http://a0.twimg.com/profile_images/3304148517/ca5b7a3855c7293f78bd755373656146_normal.jpeg">
+    <img class="media-object" data-src="holder.js/64x64" src="https://pbs.twimg.com/profile_images/760268372135129088/gMumPP77_bigger.jpg">
   </a>
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[2]['user']['screen_name'] . ">" . $response_data[2]['user']['name'] . "</a>" ?></h4>
@@ -164,7 +154,7 @@ function linkEnts($response) {
 
 <div class="media">
   <a class="pull-left" href="#">
-    <img class="media-object" data-src="holder.js/64x64" src="http://a0.twimg.com/profile_images/3304148517/ca5b7a3855c7293f78bd755373656146_normal.jpeg">
+    <img class="media-object" data-src="holder.js/64x64" src="https://pbs.twimg.com/profile_images/760268372135129088/gMumPP77_bigger.jpg">
   </a>
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[3]['user']['screen_name'] . ">" . $response_data[3]['user']['name'] . "</a>" ?></h4>
@@ -178,7 +168,7 @@ function linkEnts($response) {
 
 <div class="media">
   <a class="pull-left" href="#">
-    <img class="media-object" data-src="holder.js/64x64" src="http://a0.twimg.com/profile_images/3304148517/ca5b7a3855c7293f78bd755373656146_normal.jpeg">
+    <img class="media-object" data-src="holder.js/64x64" src="https://pbs.twimg.com/profile_images/760268372135129088/gMumPP77_bigger.jpg">
   </a>
   <div class="media-body">
     <h4 class="media-heading"><?php echo "<a href=" . "http://www.twitter.com/" . $response_data[4]['user']['screen_name'] . ">" . $response_data[4]['user']['name'] . "</a>" ?></h4>
